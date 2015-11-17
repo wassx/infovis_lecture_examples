@@ -1,0 +1,68 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "Class A",
+      "children": [
+        {
+          "name": "A1",
+          "size": 3938
+        },
+        {
+          "name": "A2",
+          "size": 3812
+        },
+        {
+          "name": "A3",
+          "size": 6714
+        },
+        {
+          "name": "A4",
+          "size": 743
+        }
+      ]
+    },
+    {
+      "name": "Class B",
+      "children": [
+        {
+          "name": "B1",
+          "size": 2938
+        },
+        {
+          "name": "B2",
+          "size": 4112
+        },
+        {
+          "name": "B3",
+          "size": 614
+        },
+        {
+          "name": "B4",
+          "size": 1743
+        }
+      ]
+    },
+    {
+      "name": "Class C",
+      "children": [
+        {
+          "name": "C1",
+          "size": 4938
+        },
+        {
+          "name": "C2",
+          "size": 5812
+        },
+        {
+          "name": "C3",
+          "size": 714
+        },
+        {
+          "name": "C4",
+          "size": 243
+        }
+      ]
+    }
+  ]
+}
