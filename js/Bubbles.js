@@ -15,7 +15,7 @@ var mybubbles = {
             .attr("class", "bubble").append("g")
             .call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom));
 
-        d3.json("data/hierarchydata.json", function (error, data) {
+        d3.json("../data/hierarchydata.json", function (error, data) {
             if (error) throw error;
 
             var node = svg.selectAll(".node").data(bubble.nodes(classes(data)).filter(function(d) { return !d.children; }))
