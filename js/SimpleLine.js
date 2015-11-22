@@ -11,6 +11,7 @@ var mychart = {
         var width = 600;
 
         //Init helper method for parsing date formats
+        //https://github.com/mbostock/d3/wiki/Time-Formatting
         var parseDate = d3.time.format("%d-%b-%y").parse;
 
         //Defining scales by setting their attributes and range
@@ -27,7 +28,7 @@ var mychart = {
             return x(d.date);
         }).y(function (d) {
             return y(+d.value);
-        });
+        }).interpolate("monotone");
 
         //Selects the "body" element and appends a "svg" with attributes.
         //The svg has an element ("g") appended with translation to position the "drawing area"
@@ -63,6 +64,29 @@ var mychart = {
 
             //Drawing the line
             svg.append("path").datum(data).attr("class", "line").attr("d", line);
+
+            svg.selectAll("datamarker").data(data).enter()
+                .append("circle")
+                .attr("class", "datamarker")
+                .attr("r", function(d) {
+                    return d.amount * 0.15;
+                })
+                .attr("cx", function(d) {
+                    return x(d.date);
+                })
+                .attr("cy", function(d) {
+                    return y(d.amount);
+                })
+                .on("mouseover", function (d) {
+                    d3.select(this).transition().ease("elastic").style("fill-opacity", 1.0).attr("r", function(d) {
+                        return d.amount * 0.15 + 15;
+                    });
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this).transition().style("fill-opacity", 0.5).attr("r", function(d) {
+                        return d.amount * 0.15;
+                    });;
+                });
 
         });
     }
