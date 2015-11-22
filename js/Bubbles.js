@@ -18,7 +18,8 @@ var mybubbles = {
         d3.json("../data/hierarchydata.json", function (error, data) {
             if (error) throw error;
 
-            var node = svg.selectAll(".node").data(bubble.nodes(classes(data)).filter(function(d) { return !d.children; }))
+            var node = svg.selectAll(".node")
+                .data(bubble.nodes(classes(data)).filter(function(d) { return !d.children; }))
                 .enter().append("g").attr("class", "node").attr("transform", function (d) {
                     return "translate(" + d.x + "," + d.y + ")";
                 });
@@ -30,7 +31,14 @@ var mybubbles = {
                 .attr("r", function(d) { return d.r;})
                 .style("fill", function(d) {return colors(d.packageName)})
                 .on("mouseover", function(d) {
-                    d3.select(this).style("fill", function(d) {d3.rgb(getComputedStyle(this, null).getPropertyValue("fill")).brighter();})
+                    d3.select(this).style("fill", function(d) {
+                        return d3.rgb(colors(d.packageName)).brighter();
+                    })
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this).style("fill", function(d) {
+                        return d3.rgb(colors(d.packageName));
+                    })
                 });
 
             node.append("text").text(function(d) { return d.className;})
